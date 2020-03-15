@@ -1,0 +1,125 @@
+public class EmployeeDetails {
+	static String csvFilename = "C://Users//pc//Desktop//545019//git//SpringExampleTesting//TestJava//EmployeeList.csv";
+
+	public static void main(String[] args) {
+		List<Employee> list = readEmployeeDetails();
+		saveToCSV(list);
+		System.out.println("completed");
+	}
+
+	public static List<Employee> readEmployeeDetails() {
+		List<Employee> list = new ArrayList<Employee>();
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println();
+		Employee e1 = new Employee();
+		e1.setId(Utils.generateRandom());
+		e1.setName("ABC");
+		e1.setDOB("08/09/2020");
+		e1.setContactNumber("8974937493");
+		if (Utils.isValidEmail("abc@gmail.com")) {
+			e1.setEmail("abc@gmail.com");
+		}
+		e1.setHigherEducation("M.C.A");
+
+		Employee e2 = new Employee();
+		e2.setId(Utils.generateRandom());
+		e2.setName("ABC");
+		e2.setDOB("08/09/2020");
+		e2.setContactNumber("8974937493");
+		if (Utils.isValidEmail("abc@gmail.com")) {
+			e2.setEmail("abc@gmail.com");
+		}
+		e2.setHigherEducation("M.C.A");
+		list.add(e1);
+		list.add(e2);
+		return list;
+	}
+
+	public static void saveToCSV(List<Employee> list) {
+		try (CSVWriter csvWriter = new CSVWriter(new FileWriter(csvFilename))) {
+
+			String[] str = new String[6];
+			List<String[]> listOfEmp = new ArrayList<String[]>();
+
+			String[] header = "ID,NAME,DOB,HIGHER EDUCATION,CONTACT NUMBER,EMAIL ID"
+					.split(",");
+			String empS = "";
+			for (Employee s : list) {
+				str[0] = String.valueOf(s.getId());
+				str[1] = s.getName();
+				str[2] = s.getDOB();
+				str[3] = s.getHigherEducation();
+				str[4] = String.valueOf(s.getContactNumber());
+				str[5] = s.getEmail();
+				listOfEmp.add(str);
+			}
+
+			csvWriter.writeNext(header);
+			csvWriter.writeAll(listOfEmp);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
+
+class Employee {
+	private int id;
+	private String name;
+	private String DOB;
+	private String higherEducation;
+	private BigInteger contactNumber;
+	private String email;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDOB() {
+		return DOB;
+	}
+
+	public void setDOB(String dOB) {
+		DOB = dOB;
+	}
+
+	public String getHigherEducation() {
+		return higherEducation;
+	}
+
+	public void setHigherEducation(String higherEducation) {
+		this.higherEducation = higherEducation;
+	}
+
+	public BigInteger getContactNumber() {
+		return contactNumber;
+	}
+
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = new BigInteger(contactNumber);
+		// this.contactNumber = contactNumber;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+}
