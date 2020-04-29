@@ -1,0 +1,37 @@
+Parent p=new Child(); // It will work. because at runtime, compiler will check whether Child is a type or instance of Parent type and cast it. 
+Method will be called upon and Child class methods will be called if not static.
+
+Child c=new Parent(); // Will not work. At runtime, parent class is not instance of Child class, and so it causes ClassCastException
+
+
+public class Test {
+    public static void main(String[] args) {
+        Parent p=new Child();
+        p.foo(); // o/p "Child"
+        p.sprint(); // It's not overriding. It will call Parent class method
+                    // and print o/p:   "static method in Parent"
+        //Parent.sprint(); 
+
+        Child c=(Child)new Parent(); // It will throw ClassCastException.
+   c.foo();
+   c.sprint(); // we can't access it
+   Child.sprint(); // can't access it because Parent class object can't be referenced by child class.
+    }
+}
+class Parent{
+    public void foo(){
+        System.out.println("Parent");
+    }public static void sprint(){
+        System.out.println("static method in Parent");
+    }
+}
+
+class Child extends Parent {
+    public void foo(){
+        System.out.println("Child");
+    }
+    public static void sprint(){
+        System.out.println("static method in Child");
+    }
+
+}
