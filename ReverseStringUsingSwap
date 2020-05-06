@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+		/* create a new string */
+		StringBuffer s = new StringBuffer("GeeksQuiz");
+		char[] c=reverse2(s);
+		
+		System.out.println("Reversed string is " + c.toString());
+		for(int i=0;i<c.length;i++) {
+			System.out.print(c[i]);
+		}
+	}
+
+	private static char[] reverse2(StringBuffer sb) {
+		char[] str=sb.toString().toCharArray();
+				int n = str.length;
+		for (int i = 0; i < n / 2; i++) {
+
+			swap(str, i, n - 1 - i);
+		}
+return str;
+	}
+
+	private static void swap(char[] charA, int a, int b) {
+		char temp = charA[a];
+		charA[a] = charA[b];
+		charA[b] = temp;
+	}
