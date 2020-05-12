@@ -1,0 +1,40 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.ListIterator;
+
+public class ReverseAListWithoutInbuiltMethods {
+    public static void main(String[] args) {
+        int[] arr={12, 4, 34, 7, 78,33, 20};
+        display(arr);
+int[] rev=reverse(arr);
+        display(rev);
+
+    }
+    private static void display(int[] arr){
+
+        for(int i=0;i<arr.length;i++){
+            System.out.print(" "+arr[i]);
+        }
+        System.out.println("");
+    }
+    private static  int[] reverse(int[] arr){
+        List<Integer> list=new ArrayList<Integer>();
+
+        for(int a:arr){
+            list.add(a);
+        }
+        int[] rev=new int[arr.length];
+
+
+        int j=0;
+
+        ListIterator<Integer> listI=list.listIterator(arr.length);
+        while(listI.hasPrevious()){
+            rev[j]=listI.previous();
+
+            j++;
+        }
+        return rev;
+    }
+}
