@@ -10,6 +10,18 @@ display(arrMax);
 
         List<Integer> list=new ArrayList<>();
         int[] tempA=new int[B];
+                for(int i=0;i<A.length-B+1;i++){
+                    tempA=Arrays.copyOfRange(A, i, i+B);
+                    Arrays.sort(tempA);
+                    list.add(tempA[tempA.length-1]);
+        }
+        int[] array = list.stream().mapToInt(i->i).toArray();
+        return array;
+    }
+   /* private static int[] getMax(int[] A,int B){
+
+        List<Integer> list=new ArrayList<>();
+        int[] tempA=new int[B];
 
                 for(int i=0;i<A.length-B+1;i++){
 
@@ -25,7 +37,7 @@ display(arrMax);
         }
         int[] array = list.stream().mapToInt(i->i).toArray();
         return array;
-    }
+    }*/
     private static int getMaxValueFromSortedArray(int[] tempA){
         display(tempA);
         int maxValue=0;
