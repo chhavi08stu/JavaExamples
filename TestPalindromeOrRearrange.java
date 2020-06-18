@@ -51,4 +51,22 @@ public static boolean isPalindrome(String s){
         }
         return flag;
     }
+	/* Check whether a string could be rearranged to form a palindrome or not. */
+	protected static boolean isPalindrome(String s){
+        boolean flag=false;
+        List<String> temp=new ArrayList<String>();
+        char[] charA=s.toCharArray();
+
+        for(int i=0;i<charA.length;i++){
+            if(!temp.contains(""+charA[i])){
+                      temp.add(""+charA[i]);
+            }else{
+                      temp.remove(""+charA[i]);
+            }
+        }
+         if((charA.length %2==0 && temp.size()==0) || charA.length%2!=0 && temp.size()==1){
+            flag=true;
+        }
+        return flag;
+    }
 }
