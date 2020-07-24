@@ -1,0 +1,25 @@
+public class FileWrite {
+    public static void main(String[] args) throws Exception  {
+             //sftp.sftpGetConnect();
+        List<String> list =  new ArrayList<>();
+        list.add("BBBB");
+        list.add("CCCC");
+        writeIntoText(list);
+        List<String> list1 =  new ArrayList<>();
+        list1.add("AAAA1111");
+        list1.add("BBBB2222");
+        list1.add("CCCC2222");
+        writeIntoText(list1);
+    }
+    public static void writeIntoText(List<String> result) throws Exception
+    {
+
+        FileWriter fstream = new FileWriter("log.txt",true);
+        BufferedWriter out = new BufferedWriter(fstream);
+        for (String s : result) {
+            out.write(s+"\n");
+        }
+    out.close();
+    }
+
+}
