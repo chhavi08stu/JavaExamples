@@ -1,7 +1,7 @@
 public class ReverseAListWithoutInbuiltMethods
 {
 int[] arr = { 12, 4, 34, 7, 78, 33, 20 }; 
-
+static Stream<Integer> myStream = Arrays.asList(arr).stream().flatMapToInt(num -> Arrays.stream(num)).boxed();
   public static void main(String[] s){
       reverseArrayUsingStreamRange(arr);
   }
@@ -32,7 +32,7 @@ int[] arr = { 12, 4, 34, 7, 78, 33, 20 };
   
   /** this method will use listIterator to reverse the int array */
   private static void reverseUsingJava8StreamreduceAndConcat(int[] arr){
-   Stream<Integer> myStream = Arrays.asList(arr).stream().flatMapToInt(num -> Arrays.stream(num)).boxed();
+   
   myStream.reduce(Stream.empty(), (Stream<Integer> a, Integer b) -> Stream.concat(Stream.of(b), a),
 				(a, b) -> Stream.concat(b, a)).forEach(System.out::println);
 }
